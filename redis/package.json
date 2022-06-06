@@ -1,8 +1,8 @@
 {
-  "name": "mongoose-best-practises",
+  "name": "redis",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "redisConnection.js",
   "scripts": {
     "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,8 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.1",
-    "mongodb": "^4.6.0",
-    "mongoose": "^6.3.5"
+    "dotenv": "^16.0.1",
+    "ioredis": "^5.0.6"
   }
 }

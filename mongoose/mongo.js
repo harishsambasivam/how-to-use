@@ -1,30 +1,31 @@
-import mongoose from 'mongoose';
+const { MongoClient } = require('mongodb');
 
-async function initDB(uri, database) {
-  let conn = null;
-  return new Promise(function (resolve, reject) {
-    console.log(`${uri}/${database}`);
-    if (!conn) {
-      conn = mongoose.createConnection(`${uri}/${database}`);
+function mongoClient() {
+    let client = null;
+    function connect(uri){
+      if(client) return client;
+      console.log("connecting............")
+      promise = new Promise(
+        function (resolve, reject) {
+           MongoClient.connect(uri, function (err,client) {
+            if (err) {
+              console.log('Unable to connect to the mongoDB server. Error:', err);
+              reject(err);
+            }
+            else {
+              console.log('Connection established to', uri);
+              resolve(client);
+            }
+          });
+        }
+      );
     }
+    return {
+      connect
+    }
+  }
 
-    // if (config.env === 'development') {
-    //   mongoose.set('debug', true);
-    // }
 
-    conn.on('error', (err) => {
-      reject(err);
-    });
+  
 
-    conn.on('open', () => {
-      resolve(conn);
-    });
-
-    conn.once('open', () => {
-      console.info('Connected to MongoDB');
-    });
-  });
-}
-export {
-  initDB
-}
+  module.exports = mongoClient();
