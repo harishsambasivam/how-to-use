@@ -10,8 +10,8 @@ const connectRedis = async (redisUri, redisPort) => {
       const redisConnection = new Redis.Cluster(
         [
           {
-            port: redisPort,
-            host: redisUri,
+            port: 6379,
+            host: "notifications-dev-cluster.gjtbiv.ng.0001.aps1.cache.amazonaws.com",
           },
         ]
       );
@@ -26,11 +26,7 @@ const connectRedis = async (redisUri, redisPort) => {
       });
 
       redisConnection.on("error", (err) => {
-        // FIXME: on redis error reconnect
-        // reject(err);
-        logger.error(
-          `redis connection failed, status: ${redisConnection.status}`
-        );
+        logger.error(`redis connection failed, status: ${err}`);
       });
     } catch (err) {
       reject(err);

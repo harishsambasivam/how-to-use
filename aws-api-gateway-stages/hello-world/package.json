@@ -12,8 +12,8 @@
   "scripts": {
     "test": "mocha tests/unit/",
     "build": "sam build",
-    "deploy:dev": "sam deploy --profile rnd --no-confirm-changeset --no-fail-on-empty-changeset --stack-name hello-world-with-stages  --capabilities CAPABILITY_IAM --region ap-south-1 --parameter-overrides \"ParameterKey=Stage,ParameterValue=dev\" --s3-bucket hello-world-api-with-stages",
-    "deploy:stage": "sam deploy --profile rnd --no-confirm-changeset --no-fail-on-empty-changeset --stack-name hello-world-with-stages  --capabilities CAPABILITY_IAM --region ap-south-1 --parameter-overrides \"ParameterKey=Stage,ParameterValue=uat\""
+    "deploy:dev": "sam deploy --profile rnd --no-confirm-changeset --no-fail-on-empty-changeset --stack-name hello-world-with-stages-dev  --capabilities CAPABILITY_IAM --region ap-south-1 --parameter-overrides \"ParameterKey=Stage,ParameterValue=dev\" --s3-bucket hello-world-api-with-stages",
+    "deploy:stage": "sam deploy --profile rnd --no-confirm-changeset --no-fail-on-empty-changeset --stack-name hello-world-with-stages-uat  --capabilities CAPABILITY_IAM --region ap-south-1 --parameter-overrides \"ParameterKey=Stage,ParameterValue=uat\"  --s3-bucket hello-world-api-with-stages"
   },
   "devDependencies": {
     "chai": "^4.2.0",
